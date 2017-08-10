@@ -34,6 +34,10 @@ class Popular extends React.Component {
               <li
                 style = {lang === this.state.selectedLanguage ? {color: '#d0021b'} : null}
                 onClick={this.updateLanguage.bind(null, lang)}
+                // bind also accepts arguments
+                // first args is this
+                // rest is normal arguments
+                // here this is already in context, hence first args can be null
                 key={lang}>{lang}
               </li>
               // here this is undefined
