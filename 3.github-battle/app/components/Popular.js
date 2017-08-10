@@ -8,6 +8,7 @@ class Popular extends React.Component {
     };
 
     this.updateLanguage = this.updateLanguage.bind(this);
+    // bind returns a new function specifying the context(this) inside that function
     // here we say this.updateLanguage, we want it to be a function whose this is bound always to this keyword
     // right here(bind(this))
   }
