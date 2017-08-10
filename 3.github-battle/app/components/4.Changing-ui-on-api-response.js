@@ -64,6 +64,8 @@ class Popular extends React.Component {
   }
 
   componentDidMount() {
+    // we need to fetch from api each time the language is changed
+    // hence its best to put that in updatelang function
     this.updateLanguage(this.state.selectedLanguage)
   }
 
@@ -97,7 +99,8 @@ class Popular extends React.Component {
             : <RepoGrid repos={this.state.repos} />}
       </div>
     )
+    // this will give error coz we are calling map function even before api return anything
+    /*<RepoGrid
+      repos={this.state.repos}/>*/
   }
 }
-
-module.exports = Popular;
