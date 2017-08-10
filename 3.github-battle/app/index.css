@@ -1,0 +1,24 @@
+body {
+  /* instead of loading heavy fonts, this loads system fonts
+      one or more of them is already going to be in user system*/
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+}
+
+li {
+  list-style: none;
+}
+
+.languages {
+  display: flex;
+  justify-content: center;
+}
+
+.languages li {
+  margin: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
