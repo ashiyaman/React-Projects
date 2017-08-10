@@ -1,4 +1,30 @@
 var React = require('react');
+var PropTypes = require('prop-types');
+var api = require('../utils/api');
+
+function SelectLanguage(props) {
+  var languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python'];
+
+  return (
+    <ul className='languages'>
+      {languages.map(function (lang) {
+        return (
+          <li
+            style = {lang === props.selectedLanguage ? {color: '#d0021b'} : null}
+            onClick={props.onSelect.bind(null, lang)}
+            key={lang}>{lang}
+          </li>
+        )
+      }, this)}
+    </ul>
+  )
+}
+
+SelectLanguage.propTypes = {
+  selectedLanguage : PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired
+}
+
 
 class Popular extends React.Component {
   constructor(props) {
@@ -6,12 +32,19 @@ class Popular extends React.Component {
     this.state = {
       selectedLanguage: 'All',
     };
-
     this.updateLanguage = this.updateLanguage.bind(this);
-    // bind returns a new function specifying the context(this) inside that function
-    // here we say this.updateLanguage, we want it to be a function whose this is bound always to this keyword
-    // right here(bind(this))
   }
+
+  // one of component lifecycle method
+  // called after component is rendered to DOM
+  // hence called only once
+  componentDidMount() {
+    api.fetchPopularRepos(this.state.selectedLanguage)
+        .then( function(repos) {
+          console.log(repos);
+        })
+  }
+
   updateLanguage(lang) {
     this.setState(function () {
       return {
@@ -19,36 +52,13 @@ class Popular extends React.Component {
       }
     });
   }
-  // we know whats in the value of this only when its invoked
-  // this in updateLanguage may have some other context if not invoked properly
-  // hence we should bind this
   render() {
-    var languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python'];
-    console.log("up ", this);     // Popular
 
     return (
       <div>
-        <ul className='languages'>
-          {languages.map(function (lang) {
-            console.log(this);    // this is undefined without map second argument
-            return (
-              <li
-                style = {lang === this.state.selectedLanguage ? {color: '#d0021b'} : null}
-                onClick={this.updateLanguage.bind(null, lang)}
-                // bind also accepts arguments
-                // first args is this
-                // rest is normal arguments
-                // here this is already in context, hence first args can be null
-                key={lang}>{lang}
-              </li>
-              // here this is undefined
-              // hence onclick will throw error
-              // this is typical problem of map
-              // hence map accepts a secong argument that is the specific context we want the function(map function)
-              // to be invoked
-            )
-          }, this)}
-        </ul>
+        <SelectLanguage
+          selectedLanguage = {this.state.selectedLanguage}
+          onSelect = {this.updateLanguage}/>
       </div>
     )
   }
