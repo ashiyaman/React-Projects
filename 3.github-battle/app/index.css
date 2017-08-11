@@ -14,6 +14,24 @@ ul {
 
 li {
   list-style: none;
+  margin: 10px;
+}
+
+a {
+  color: #d0021b;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+}
+
+.nav li {
+
+}
+
+.active {
+  font-weight: bold;
 }
 
 .languages {
@@ -22,7 +40,6 @@ li {
 }
 
 .languages li {
-  margin: 10px;
   font-weight: bold;
   cursor: pointer;
 }

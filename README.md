@@ -12,3 +12,7 @@
 # Its going to take the code(specifically code located in entry property)
 # then run the code through loaders(which will transform and then combine it)
 # put the code in the path specified in output property
+
+# react-router
+# need react-router-dom
+#   -> like react, even react router can be rendered to different environment like RN and DOM

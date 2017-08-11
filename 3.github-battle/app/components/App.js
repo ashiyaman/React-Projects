@@ -1,14 +1,19 @@
 var React = require('react');
 var Popular = require('./Popular');
-
+var ReactRouter = require('react-router-dom');
+var Router = ReactRouter.BrowserRouter;
+var Route = ReactRouter.Route;
+var Nav = require('./Nav');
 
 class App extends React.Component {
   render() {
-    // return has () coz if we do return, JS will add ; at end (ie.return;) and the next line ie.div will not be executed
     return (
-      <div className='container'>
-        <Popular />
-      </div>
+      <Router>        
+        <div className='container'>
+          <Nav />
+          <Route path='/popular' component={Popular} />
+        </div>
+      </Router>
     )
   }
 }
