@@ -82,7 +82,6 @@ class Popular extends React.Component {
             }
           })
         }.bind(this));
-        console.log("down...",this.state.repos)
   }
 
   render() {
