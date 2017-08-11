@@ -17,7 +17,7 @@ class App extends React.Component {
         <div className='container'>
           <Nav />
           <Switch>
-            <Route exact path='/' component={Home}/>
+            <Route exact path='/' component={Home} />
             <Route exact path='/battle' component={Battle} />
             <Route path='/popular' component={Popular} />
             // when none of above routes are active default to not found page
