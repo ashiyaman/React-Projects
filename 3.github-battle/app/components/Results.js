@@ -111,15 +111,20 @@ class Results extends React.Component {
     }
 
     return (
-      <div className='row'>
-        <Player
-          label='Winner'
-          score={winner.score}
-          profile={winner.profile}/>
-        <Player
-          label='Loser'
-          score={loser.score}
-          profile={loser.profile}/>
+      <div>
+        <div className='row'>
+          <Player
+            label='Winner'
+            score={winner.score}
+            profile={winner.profile}/>
+          <Player
+            label='Loser'
+            score={loser.score}
+            profile={loser.profile}/>
+        </div>
+        <Link className='button' to='/battle'>
+          Battle With Others
+        </Link>
       </div>
     )
   }
