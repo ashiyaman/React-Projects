@@ -39,8 +39,8 @@ function getUserData(player) {
     getProfile(player),
     getRepos(player)
   ]).then(function (data) {
-    profile: data[0];
-    repos: data[1];
+    var profile = data[0];
+    var repos = data[1];
 
     return {
       profile: profile,

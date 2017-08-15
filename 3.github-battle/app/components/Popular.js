@@ -27,7 +27,7 @@ function RepoGrid(props) {
           return (
             <li key={repo.name} className='popular-item'>
               <div className='popular-rank'>#{ index+1 }</div>
-              <ul className='list-items'>
+              <ul className='space-list-items'>
                 <li>
                   <img
                     src={repo.owner.avatar_url}

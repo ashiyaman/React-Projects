@@ -1,38 +1,9 @@
 
 var React = require('react');
 var PropTypes = require('prop-types');
-var Link = require('react-router-dom').Link;
-
-function PlayerPreview (props) {
-  return (
-    <div className='column'>
-      <div>
-        <img
-          className='avatar'
-          src={props.avatar}
-          alt={'Avatar for ' + props.username}
-        />
-        <h2>@{props.username}</h2>
-      </div>
-      <button
-        className='reset'
-        onClick={props.onReset.bind(null, props.id)}>
-          Reset
-      </button>
-    </div>
-  )
-}
-
-
-PlayerPreview.propTypes = {
-  avatar: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  onReset: PropTypes.func.isRequired,
-  username: PropTypes.string.isRequired
-}
 
 // child component
-// since child component is onlt required by battle componnet(ie.not reused anywhere else)
+// since child component is onlt required bt battle componnet(ie.not reused anywhere else)
 // we can create child component here itself instead of putting in separate file
 class PlayerInput extends React.Component {
   constructor(props) {
@@ -99,15 +70,16 @@ class Battle extends React.Component {
     this.state = {
       playerOneName: '',
       playerTwoName: '',
-      playerOneImage: null,
-      playerTwoImage: null
+      playeroneImage: null,
+      playerTwoName: null
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleReset = this.handleReset.bind(this);
   }
 
   handleSubmit(id, username) {
+    console.log('id...', id)
+    console.log('username...', username)
     this.setState( function() {
       var newState = {};
       newState[id+'Name'] = username
@@ -116,61 +88,24 @@ class Battle extends React.Component {
     })
   }
 
-  handleReset(id) {
-    this.setState( function() {
-      var newState = {};
-      newState[id+'Name'] = '';
-      newState[id+'Image'] = null;
-      return newState;
-    })
-  }
-
   render() {
     var playerOneName = this.state.playerOneName;
     var playerTwoName = this.state.playerTwoName;
-    var playerOneImage = this.state.playerOneImage;
-    var playerTwoImage = this.state.playerTwoImage;
-
-
     return (
-      <div>
-        <div className='row'>
-
-          { !playerOneName &&
-            <PlayerInput
-              id='playerOne'
-              label='Player One'
-              onSubmit={this.handleSubmit}
-          />}
-
-          { playerOneImage !== null &&
-            <PlayerPreview
-              avatar={playerOneImage}
-              id='playerOne'
-              onReset={this.handleReset}
-              username={playerOneName}
-          />}
-
-          { !playerTwoName &&
-            <PlayerInput
-              id='playerTwo'
-              label='Player Two'
-              onSubmit={this.handleSubmit}
-          />}
-
-          { playerTwoImage !== null &&
-            <PlayerPreview
-              avatar={playerTwoImage}
-              id='playerTwo'
-              onReset={this.handleReset}
-              username={playerTwoName}
-          />}
-        </div>
-
-        { playerOneImage && playerTwoImage &&
-          <Link
-            className='button'>
-          </Link>
+      <div className='row'>
+        {!playerOneName &&
+          <PlayerInput
+            id='playerOne'
+            label='Player One'
+            onSubmit={this.handleSubmit}
+            />
+        }
+        {!playerTwoName &&
+          <PlayerInput
+            id='playerTwo'
+            label='Player Two'
+            onSubmit={this.handleSubmit}
+            />
         }
       </div>
     )
